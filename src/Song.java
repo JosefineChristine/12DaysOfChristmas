@@ -1,43 +1,60 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 
 public class Song {
 
-    public void printSong() {
+    public void printSong(PrintStream out) {
 
         for (int day = 1; day <= 12; day++) {
-            System.out.print("On the ");
-            System.out.print(day);
+            //PrintStream out = System.out;
+            out.print("On the ");
+            out.print(day);
 
             switch (day) {
-                case 1 ->  System.out.print("st");
-                case 2 ->  System.out.print("nd");
-                case 3 ->  System.out.print("rd");
-                default -> System.out.print("th");
+                case 1 ->  out.print("st");
+                case 2 ->  out.print("nd");
+                case 3 ->  out.print("rd");
+                default -> out.print("th");
             }
 
-            System.out.println(" day of Christmas my true love gave to me");
+            out.println(" day of Christmas my true love gave to me");
 
             switch (day) {
-                case 12: System.out.println("Twelve drummers drumming,");
-                case 11: System.out.println("Eleven pipers piping,");
-                case 10: System.out.println("Ten lords a leaping,");
-                case 9:  System.out.println("Nine ladies dancing,");
-                case 8:  System.out.println("Eight maids a milking,");
-                case 7:  System.out.println("Seven swans a swimming,");
-                case 6:  System.out.println("Six geese a laying,");
-                case 5:  System.out.println("Five golden rings,");
-                case 4:  System.out.println("Four calling birds,");
-                case 3:  System.out.println("Three French hens,");
-                case 2:  System.out.println("Two turtle doves, and");
-                default: System.out.println("A partridge in a pear tree.");
+                case 12: out.println("Twelve drummers drumming,");
+                case 11: out.println("Eleven pipers piping,");
+                case 10: out.println("Ten lords a leaping,");
+                case 9:  out.println("Nine ladies dancing,");
+                case 8:  out.println("Eight maids a milking,");
+                case 7:  out.println("Seven swans a swimming,");
+                case 6:  out.println("Six geese a laying,");
+                case 5:  out.println("Five golden rings,");
+                case 4:  out.println("Four calling birds,");
+                case 3:  out.println("Three French hens,");
+                case 2:  out.println("Two turtle doves, and");
+                default: out.println("A partridge in a pear tree.");
             }
 
-            System.out.println();
+            out.println();
         }
     }
 
 
     public static void main(String[] args) {
+
+        System.out.println("test test test test ");
+
+        PrintStream output = null;
+        try {
+            output = new PrintStream(new File("sangeee.txt"));
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            throw new RuntimeException(e);
+        }
+
         Song song = new Song();
-        song.printSong();
+        song.printSong(output);
+
+        System.out.println("test test test test 2");
     }
 }
